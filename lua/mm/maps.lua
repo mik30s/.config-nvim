@@ -40,4 +40,16 @@ map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', {})
 map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', {})
 map('n', '<leader>pp', '<cmd>Telescope buffers<cr>', {})
 
+-- splitting windows
+map('n', "<leader>hs", '<cmd>split<cr>', {})
+map('n', "<leader>vs", '<cmd>vsplit<cr>', {})
+
+
+-- Normal mode: move the current line down and up
+map('n', '<A-j>', ':m .+1<CR>==', { noremap = true, silent = true })
+map('n', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true })
+
+-- Visual mode: move the selected block of lines down and up
+map('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+map('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
  
