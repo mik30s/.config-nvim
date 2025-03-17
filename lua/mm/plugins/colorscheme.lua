@@ -1,11 +1,13 @@
 -- ~/nvim/lua/slydragonn/plugins/colorscheme.lua
 
 return {
-    "folke/tokyonight.nvim",
+--    "mofiqul/vscode.nvim",
+--    "nyoom-engineering/oxocarbon.nvim",
+    "rmehri01/onenord.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-        vim.cmd("colorscheme tokyonight-day")
+        vim.cmd("colorscheme  onenord")
     end,
 }
  
