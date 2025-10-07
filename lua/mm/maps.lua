@@ -52,4 +52,8 @@ map('n', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true })
 -- Visual mode: move the selected block of lines down and up
 map('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 map('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+map("n", "<S-ScrollWheelUp>", "zh", { noremap = true, silent = true })
+map("n", "<S-ScrollWheelDown>", "zl", { noremap = true, silent = true })
+
  

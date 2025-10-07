@@ -1,13 +1,18 @@
 -- ~/nvim/lua/slydragonn/plugins/colorscheme.lua
 
 return {
---    "mofiqul/vscode.nvim",
+--    "folke/tokyonight.nvim",
 --    "nyoom-engineering/oxocarbon.nvim",
-    "rmehri01/onenord.nvim",
+--    "rmehri01/onenord.nvim",
+    "catppuccin/nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-        vim.cmd("colorscheme  onenord")
+    opts = {
+        transparent_background = true, -- disables setting the background color.
+    },
+    config = function(_, opts)
+        require("catppuccin").setup(opts)
+        vim.cmd("colorscheme  catppuccin")
     end,
 }
  
