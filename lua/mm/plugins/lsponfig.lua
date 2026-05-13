@@ -27,6 +27,7 @@ return {
                 "jsonls",
                 "eslint",
                 "pyright",
+                "rust_analyzer",
             },
         })
 
@@ -73,13 +74,15 @@ return {
         local on_attach = function(client, bufnr)
             -- format on save (disable for clangd)
             if client.server_capabilities.documentFormattingProvider and client.name ~= "clangd" then
-                vim.api.nvim_create_autocmd("BufWritePre", {
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
+                --[[vim.api.nvim_create_autocmd("BufWritePre", {
                     group = vim.api.nvim_create_augroup("Format", { clear = true }),
                     buffer = bufnr,
                     callback = function()
                         vim.lsp.buf.format()
                     end,
-                })
+                })]]
             end
 
             -- keymaps for LSP
@@ -96,17 +99,20 @@ return {
 
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-        -- 🔹 Setup handlers
-        mason_lspconfig.setup_handlers({
-            function(server)
-                nvim_lsp[server].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
+        -- 🔹 Setup servers
+        local installed_servers = mason_lspconfig.get_installed_servers()
+        
+        -- Add rust_analyzer to the list if it's in the PATH but not yet in Mason
+        if vim.fn.executable("rust-analyzer") == 1 then
+            local found = false
+            for _, s in ipairs(installed_servers) do
+                if s == "rust_analyzer" then found = true break end
+            end
+            if not found then table.insert(installed_servers, "rust_analyzer") end
+        end
 
-            -- clangd custom setup
-            ["clangd"] = function()
+        for _, server in ipairs(installed_servers) do
+            if server == "clangd" then
                 nvim_lsp["clangd"].setup({
                     on_attach = on_attach,
                     capabilities = capabilities,
@@ -121,7 +127,12 @@ return {
                         clangdFileStatus = true,
                     },
                 })
-            end,
-        })
+            else
+                nvim_lsp[server].setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                })
+            end
+        end
     end,
 }

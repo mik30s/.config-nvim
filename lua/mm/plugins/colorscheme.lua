@@ -12,7 +12,15 @@ return {
     },
     config = function(_, opts)
         require("catppuccin").setup(opts)
-        vim.cmd("colorscheme  catppuccin")
+        local theme_file = vim.fn.expand("~/.cache/theme_mode")
+        local flavor = "mocha"
+        if vim.fn.filereadable(theme_file) == 1 then
+            local mode = vim.fn.readfile(theme_file)[1]
+            if mode == "light" then
+                flavor = "latte"
+            end
+        end
+        vim.cmd("colorscheme catppuccin-" .. flavor)
     end,
 }
  

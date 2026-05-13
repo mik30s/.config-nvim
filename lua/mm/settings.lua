@@ -2,8 +2,12 @@
 --
 
 local global = vim.g
-local o      = vim.opt
+local o = vim.opt
 
+-- Set tab behavior globally for all file types
+o.tabstop = 2 -- A hard tab is 4 spaces wide for display
+o.softtabstop = 2 -- Backspace and Tab keys treat 4 spaces as a single tab
+o.expandtab = true -- Use spaces instead of actual tab characters
 -- Editor options
 o.number = true -- Print the line number in front of each line
 o.relativenumber = false -- Show the line number relative to the line
@@ -32,6 +36,6 @@ vim.opt.expandtab = true
 -- show white space
 o.list = true
 o.listchars = {
-  space = '.',
-  tab   = '→ '
+	space = ".",
+	tab = "→ ",
 }
