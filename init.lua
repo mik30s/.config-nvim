@@ -57,4 +57,3 @@ vim.opt.clipboard = "unnamedplus"
 require("mm.settings")
 require("mm.lazy")
 require("mm.maps")
-require("mm.rendermarkdown")

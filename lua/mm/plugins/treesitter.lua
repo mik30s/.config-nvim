@@ -36,6 +36,7 @@ return {
                 "gitignore",
                 "c",
                 "rust",
+                "kotlin",
             },
             incremental_selection = {
                 enable = true,

@@ -20,6 +20,7 @@ return {
                 "pyright",
                 "tailwindcss",
                 "rust_analyzer",
+                "kotlin_language_server",
             },
         })
 
@@ -31,6 +32,7 @@ return {
                 "black", -- python formatter
                 "pylint",
                 "eslint_d",
+                "ktlint",
             },
         })
     end,

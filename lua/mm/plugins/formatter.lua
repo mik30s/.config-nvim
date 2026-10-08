@@ -19,6 +19,7 @@ return {
                 markdown = { "prettier" },
                 lua = { "stylua" },
                 python = { "isort", "black" },
+                kotlin = { "ktlint" },
             },
             format_on_save = {
                 lsp_fallback = true,

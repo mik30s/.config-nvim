@@ -11,6 +11,12 @@ return {
         transparent_background = true, -- disables setting the background color.
     },
     config = function(_, opts)
+        opts.custom_highlights = function(colors)
+            return {
+                CursorLine = { bg = "#0d4a1e" },
+                CursorColumn = { bg = "#0d4a1e" },
+            }
+        end
         require("catppuccin").setup(opts)
         local theme_file = vim.fn.expand("~/.cache/theme_mode")
         local flavor = "mocha"

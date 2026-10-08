@@ -56,4 +56,14 @@ map('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 map("n", "<S-ScrollWheelUp>", "zh", { noremap = true, silent = true })
 map("n", "<S-ScrollWheelDown>", "zl", { noremap = true, silent = true })
 
+-- Crosshair cursor toggle (<leader>cx)
+map("n", "<leader>cx", function()
+	local current = vim.wo.cursorcolumn and vim.wo.cursorline
+	local next_state = not current
+	vim.wo.cursorline = next_state
+	vim.wo.cursorcolumn = next_state
+	vim.g.crosshair_enabled = next_state
+	print("Crosshair: " .. (next_state and "ON" or "OFF"))
+end)
+
  

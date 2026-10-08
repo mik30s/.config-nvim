@@ -28,6 +28,7 @@ return {
                 "eslint",
                 "pyright",
                 "rust_analyzer",
+                "kotlin_language_server",
             },
         })
 
@@ -36,8 +37,6 @@ return {
             virtual_text = {
                 spacing = 2,
                 prefix = "●",
-                wrap = true,  -- wrap long diagnostic messages
-                max_width = 80, -- force wrapping after 80 chars
             },
             signs = true,
             underline = true,
@@ -49,10 +48,9 @@ return {
                 source = "always",
                 header = "",
                 prefix = "",
-                max_width = 80, -- force wrapping after 80 chars
-                wrap = true,  -- ensures floating diagnostics wrap too
+                max_width = 100,
+                wrap = true,
             },
-            severity_sort = true,
         })
 
         -- 🔹 Custom diagnostic signs
