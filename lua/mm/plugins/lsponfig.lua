@@ -18,6 +18,8 @@ return {
         mason.setup()
 
         mason_lspconfig.setup({
+            -- servers are set up manually below; auto-enable would start duplicates
+            automatic_enable = false,
             ensure_installed = {
                 "clangd",
                 "tsserver",
@@ -124,6 +126,13 @@ return {
                     init_options = {
                         clangdFileStatus = true,
                     },
+                })
+            elseif server == "kotlin_language_server" then
+                nvim_lsp[server].setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                    -- cap JVM heap (default grows to 1/4 of RAM)
+                    cmd_env = { JAVA_OPTS = "-Xmx2g -XX:+UseSerialGC" },
                 })
             else
                 nvim_lsp[server].setup({

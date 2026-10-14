@@ -21,11 +21,14 @@ return {
                 python = { "isort", "black" },
                 kotlin = { "ktlint" },
             },
-            format_on_save = {
-                lsp_fallback = true,
-                async = false,
-                timeout_ms = 1000,
-            },
+            format_on_save = function(bufnr)
+                local slow = { kotlin = true }
+                return {
+                    lsp_fallback = true,
+                    async = false,
+                    timeout_ms = slow[vim.bo[bufnr].filetype] and 5000 or 1000,
+                }
+            end,
         })
 
         vim.keymap.set({ "n", "v" }, "<leader>f", function()

@@ -17,10 +17,12 @@ o.autoindent = true -- Copy indent from current line when starting a new line.
 o.cursorline = true -- Highlight the screen line of the cursor with CursorLine.
 o.cursorcolumn = true -- Highlight the screen column of the cursor with CursorColumn (Crosshair effect).
 
--- Neon Green Crosshair Highlights (CursorLine & CursorColumn)
+-- Dynamic Crosshair Highlights (CursorLine & CursorColumn)
 local function apply_neon_crosshair()
-	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#0d4a1e" })
-	vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#0d4a1e" })
+	local is_dark = vim.o.background == "dark"
+	local hl_opts = { bg = is_dark and "#0d4a1e" or "#c5e8ce" }
+	vim.api.nvim_set_hl(0, "CursorLine", hl_opts)
+	vim.api.nvim_set_hl(0, "CursorColumn", hl_opts)
 end
 
 -- Crosshair (cursorline + cursorcolumn) active window focus management
