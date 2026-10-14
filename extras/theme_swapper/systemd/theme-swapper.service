@@ -1,0 +1,9 @@
+[Unit]
+Description=Run Theme Swapper
+
+[Service]
+Type=oneshot
+ExecStart=%h/bin/theme_swapper.sh
+
+[Install]
+WantedBy=default.target
